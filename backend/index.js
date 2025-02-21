@@ -5,18 +5,16 @@ import dotenv from "dotenv"
 import authRoutes from "./routes/auth.routes.js"
 
 
+dotenv.config()
 
 const app = express()
-dotenv.config()
-app.get("/", (req, res) => {
-    res.send("Hello, World!123")
-})
+const PORT = process.env.PORT || 5000
+
+app.use(express.json()) // this allows to parse incoming JSON data as req.body
 
 app.use("/api/auth", authRoutes)
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     connectDB() // 123
-    console.log("Server is running on port 3000")
+    console.log("Server is running on port:", PORT)
 })
-// 9knKGfCvcz5vkHqc
-// mongodb+srv://saulatzubair:9knKGfCvcz5vkHqc@cluster0.92zvc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
