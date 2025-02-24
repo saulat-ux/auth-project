@@ -1,6 +1,7 @@
 import express from "express"
-import { connectDB } from "./db/connectDB.js"
+
 import dotenv from "dotenv"
+import { connectDB } from "./db/connectDB.js"
 
 import authRoutes from "./routes/auth.routes.js"
 
