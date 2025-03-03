@@ -13,7 +13,7 @@ export const sendVerificationEmail = async (email, verificationToken) => {
             html: VERIFICATION_EMAIL_TEMPLATE.replace("{verificationCode}", verificationToken),
             category: "Email verification"
         })
-        console.log('email send successsuccessfully', response)
+        console.log('email send successfully', response)
     } catch (error) {
         console.log(`error sending verification email: ${error}`)
         throw new Error(`error sending verification email: ${error}`)
@@ -31,12 +31,28 @@ export const sendWelcomeEmail = async (email, name) => {
                 "company_info_name": "Test_Company_info_name",
                 "saulat": "Test_Saulat"
             },
-            subject: "Welcome to our platform",
-            html: `Hello ${name}, welcome to our platform!`,
-            category: "Welcome email"
         })
-        console.log('email send successfully', response)
+        console.log(' welcome Email send successfully', response)
     } catch (error) {
+        console.log(`error sending welcome email: ${error}`);
+        throw new Error(`error sending welcome email: ${error}`);
 
+    }
+}
+
+export const sendPasswordResetEmail = async (email, resetURL) => {
+    const recipient = [{ email }];
+    try {
+        const response = await mailtrapClient.send({
+            from: sender,
+            to: recipient,
+            subject: "Reset Your Password",
+            html: PASSWORD_RESET_SUCCESS_TEMPLATE.replace("{resetURL}", resetURL),
+            category: "Password Reset",
+
+        })
+    } catch (error) {
+        console.log(`error sending password reset email: ${error}`);
+        throw new Error(`error sending password reset email: ${error}`);
     }
 }
